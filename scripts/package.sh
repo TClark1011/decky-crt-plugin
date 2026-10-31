@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Packages the built plugin into out/decky-crt-filter.zip and writes out/install.sh.
+# Packages the built plugin into out/decky-crt-filter.zip, writes out/install.sh, and
+# bundles both into out/decky-crt-filter-installer.tar.gz.
 # Run `pnpm build` first. The zip follows the Decky CLI layout, so Decky's
 # "Install plugin from ZIP" accepts it too.
 set -euo pipefail
@@ -30,4 +31,7 @@ rm -rf "$out/stage"
 sed "s|__GITHUB_REPOSITORY__|${GITHUB_REPOSITORY:-__GITHUB_REPOSITORY__}|" "$root/scripts/install.sh" > "$out/install.sh"
 chmod +x "$out/install.sh"
 
-echo "Wrote $out/$name.zip and $out/install.sh"
+# Release asset downloads lose file modes; tar keeps install.sh executable.
+tar -czf "$out/$name-installer.tar.gz" -C "$out" install.sh "$name.zip"
+
+echo "Wrote $out/$name.zip, $out/install.sh and $out/$name-installer.tar.gz"

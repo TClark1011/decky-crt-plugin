@@ -37,16 +37,17 @@ jobs:
         run: |
           version="$(node -p "require('./package.json').version")"
           tag="v${version}-build.${GITHUB_RUN_NUMBER}"
-          gh release create "$tag" out/decky-crt-filter.zip out/install.sh \
+          gh release create "$tag" out/decky-crt-filter.zip out/install.sh out/decky-crt-filter-installer.tar.gz \
             --target "$GITHUB_SHA" \
             --title "CRT Filter $tag" \
             --latest \
             --notes "Built from ${GITHUB_SHA}.
 
-          Install on a machine running Decky Loader:
+          Install on a machine running Decky Loader: download \`decky-crt-filter-installer.tar.gz\`, then run
 
           \`\`\`sh
-          curl -fsSL https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/install.sh | bash
+          tar -xzf decky-crt-filter-installer.tar.gz
+          ./install.sh
           \`\`\`
 
-          Or download both files into one folder and run \`bash install.sh\`."
+          For a public repository, \`curl -fsSL https://github.com/${GITHUB_REPOSITORY}/releases/latest/download/install.sh | bash\` also works."

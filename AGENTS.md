@@ -24,7 +24,7 @@ When you add, remove or replace a technology, or build a planned one, update thi
 - `py_modules/crt_filter/`: backend logic. `controller.py` decides the filter state, `gamescope.py` talks to gamescope, `installer.py` places shader files, `shaders.py` is the Shader Registry, `settings.py` persists settings.
 - `defaults/shaders/`: bundled `.fx` shaders. The Decky packager copies `defaults/` into the plugin root, so they ship as `shaders/`.
 - `decky.pyi`: type stub for the `decky` module Decky injects at runtime.
-- `scripts/`: `package.sh` builds `out/decky-crt-filter.zip` and `out/install.sh`. `install.sh` is the end-user installer; its `__GITHUB_REPOSITORY__` placeholder is filled in by `package.sh` from `GITHUB_REPOSITORY`.
+- `scripts/`: `package.sh` builds `out/decky-crt-filter.zip`, `out/install.sh` and `out/decky-crt-filter-installer.tar.gz` (both files, with `install.sh` still executable, since release asset downloads drop file modes). `install.sh` is the end-user installer; its `__GITHUB_REPOSITORY__` placeholder is filled in by `package.sh` from `GITHUB_REPOSITORY`.
 - `.github/workflows/release.yml`: on every push to `master`, typechecks, builds, packages and creates a release tagged `v<package.json version>-build.<run number>`, marked latest.
 - `docs/adr/`: architecture decisions.
 

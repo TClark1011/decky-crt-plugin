@@ -6,13 +6,14 @@ It works on any machine running a gamescope session (Game Mode), including the S
 
 ## Install
 
-On a machine with [Decky Loader](https://decky.xyz) installed, run:
+On a machine with [Decky Loader](https://decky.xyz) installed, download `decky-crt-filter-installer.tar.gz` from the latest release, then run:
 
 ```sh
-curl -fsSL https://github.com/<owner>/<repo>/releases/latest/download/install.sh | bash
+tar -xzf decky-crt-filter-installer.tar.gz
+./install.sh
 ```
 
-If the repository is private, download `decky-crt-filter.zip` and `install.sh` from the latest release into one folder and run `bash install.sh`. The zip also works with Decky's "Install plugin from ZIP" option in developer mode.
+The archive keeps `install.sh` executable, which a direct download of `install.sh` cannot. For a public repository, `curl -fsSL https://github.com/TClark1011/decky-crt-plugin/releases/latest/download/install.sh | bash` also works. The zip on its own works with Decky's "Install plugin from ZIP" option in developer mode.
 
 ## Use
 
