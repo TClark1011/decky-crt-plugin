@@ -1,0 +1,16 @@
+node_modules
+.pnpm-store
+dist/
+out/
+cli/
+__pycache__/
+*.log
+.DS_Store
+
+# Decky Loader injects this at runtime
+decky_plugin.py
+
+# >>> aisetup Harness Links (managed by .agents/link.sh)
+/.claude/skills
+/.claude/agents
+# <<< aisetup Harness Links

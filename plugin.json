@@ -1,0 +1,11 @@
+{
+  "name": "CRT Filter",
+  "author": "Thomas Clark",
+  "flags": [],
+  "api_version": 1,
+  "publish": {
+    "tags": ["shader", "crt", "reshade", "gamescope"],
+    "description": "Apply a CRT shader to the whole Game Mode screen, with per-game auto-apply.",
+    "image": "https://opengraph.githubassets.com/1/SteamDeckHomebrew/decky-loader"
+  }
+}
