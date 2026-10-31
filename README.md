@@ -35,7 +35,7 @@ pnpm build       # bundles the frontend into dist/
 pnpm typecheck
 ```
 
-To package the plugin, run `bash scripts/package.sh` after building. It writes `out/decky-crt-filter.zip` and `out/install.sh`. Every push to `main` does this in GitHub Actions and publishes the result as the latest release.
+To package the plugin, run `bash scripts/package.sh` after building. It writes `out/decky-crt-filter.zip` and `out/install.sh`. Every push to `master` does this in GitHub Actions and publishes the result as the latest release.
 
 ## Credits
 

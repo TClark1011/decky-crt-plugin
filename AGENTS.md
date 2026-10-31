@@ -12,7 +12,7 @@ A [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader) plugin that 
 - _Shader runtime:_ gamescope's built-in ReShade FX runtime, driven through X11 root window properties
 - _Bundled shader:_ CRT-Lottes, ported to self-contained ReShade FX
 - _Packaging:_ `scripts/package.sh`, which builds a zip in the Decky CLI layout
-- _CI/CD:_ GitHub Actions. Every push to `main` publishes a GitHub Release with the zip and `install.sh`
+- _CI/CD:_ GitHub Actions. Every push to `master` publishes a GitHub Release with the zip and `install.sh`
 - _Store release:_ Decky plugin store submission (planned)
 
 When you add, remove or replace a technology, or build a planned one, update this list in the same change.
@@ -25,7 +25,7 @@ When you add, remove or replace a technology, or build a planned one, update thi
 - `defaults/shaders/`: bundled `.fx` shaders. The Decky packager copies `defaults/` into the plugin root, so they ship as `shaders/`.
 - `decky.pyi`: type stub for the `decky` module Decky injects at runtime.
 - `scripts/`: `package.sh` builds `out/decky-crt-filter.zip` and `out/install.sh`. `install.sh` is the end-user installer; its `__GITHUB_REPOSITORY__` placeholder is filled in by `package.sh` from `GITHUB_REPOSITORY`.
-- `.github/workflows/release.yml`: on every push to `main`, typechecks, builds, packages and creates a release tagged `v<package.json version>-build.<run number>`, marked latest.
+- `.github/workflows/release.yml`: on every push to `master`, typechecks, builds, packages and creates a release tagged `v<package.json version>-build.<run number>`, marked latest.
 - `docs/adr/`: architecture decisions.
 
 ## Platform facts
