@@ -4,6 +4,16 @@ A [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader) plugin that 
 
 It works on any machine running a gamescope session (Game Mode), including the Steam Deck and desktops running SteamOS-like distributions such as CachyOS or Bazzite. It uses gamescope's built-in ReShade support, so there is nothing else to install.
 
+## Install
+
+On a machine with [Decky Loader](https://decky.xyz) installed, run:
+
+```sh
+curl -fsSL https://github.com/<owner>/<repo>/releases/latest/download/install.sh | bash
+```
+
+If the repository is private, download `decky-crt-filter.zip` and `install.sh` from the latest release into one folder and run `bash install.sh`. The zip also works with Decky's "Install plugin from ZIP" option in developer mode.
+
 ## Use
 
 1. Open the Quick Access Menu and choose **CRT Filter**.
@@ -25,7 +35,7 @@ pnpm build       # bundles the frontend into dist/
 pnpm typecheck
 ```
 
-To package the plugin, use the [Decky CLI](https://github.com/SteamDeckHomebrew/cli). It zips `dist/`, `main.py`, `py_modules/`, `plugin.json`, `package.json` and the contents of `defaults/`.
+To package the plugin, run `bash scripts/package.sh` after building. It writes `out/decky-crt-filter.zip` and `out/install.sh`. Every push to `main` does this in GitHub Actions and publishes the result as the latest release.
 
 ## Credits
 

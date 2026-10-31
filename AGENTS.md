@@ -11,7 +11,9 @@ A [Decky Loader](https://github.com/SteamDeckHomebrew/decky-loader) plugin that 
 - _Package manager:_ pnpm 9 (Decky's plugin store CI expects v9)
 - _Shader runtime:_ gamescope's built-in ReShade FX runtime, driven through X11 root window properties
 - _Bundled shader:_ CRT-Lottes, ported to self-contained ReShade FX
-- _Packaging and release:_ Decky CLI plugin zip and Decky plugin store submission (planned)
+- _Packaging:_ `scripts/package.sh`, which builds a zip in the Decky CLI layout
+- _CI/CD:_ GitHub Actions. Every push to `main` publishes a GitHub Release with the zip and `install.sh`
+- _Store release:_ Decky plugin store submission (planned)
 
 When you add, remove or replace a technology, or build a planned one, update this list in the same change.
 
@@ -22,6 +24,8 @@ When you add, remove or replace a technology, or build a planned one, update thi
 - `py_modules/crt_filter/`: backend logic. `controller.py` decides the filter state, `gamescope.py` talks to gamescope, `installer.py` places shader files, `shaders.py` is the Shader Registry, `settings.py` persists settings.
 - `defaults/shaders/`: bundled `.fx` shaders. The Decky packager copies `defaults/` into the plugin root, so they ship as `shaders/`.
 - `decky.pyi`: type stub for the `decky` module Decky injects at runtime.
+- `scripts/`: `package.sh` builds `out/decky-crt-filter.zip` and `out/install.sh`. `install.sh` is the end-user installer; its `__GITHUB_REPOSITORY__` placeholder is filled in by `package.sh` from `GITHUB_REPOSITORY`.
+- `.github/workflows/release.yml`: on every push to `main`, typechecks, builds, packages and creates a release tagged `v<package.json version>-build.<run number>`, marked latest.
 - `docs/adr/`: architecture decisions.
 
 ## Platform facts
@@ -77,4 +81,5 @@ These come from gamescope's source (`src/steamcompmgr.cpp`, `src/reshade_effect_
 ## Commands
 
 - `pnpm install`, then `pnpm build` (Rollup bundle in `dist/`) and `pnpm typecheck`.
+- `bash scripts/package.sh` after a build, to produce the release zip and installer in `out/`. When you add a top-level file the plugin needs at runtime, add it to `package.sh` too.
 - There is no test suite yet. To check a shader compiles the way gamescope compiles it, build gamescope's pinned ReShade fork (`src/reshade` submodule of ValveSoftware/gamescope) with a small harness that mirrors `ReshadeEffectPipeline::init`, and run it on the `.fx` file.
